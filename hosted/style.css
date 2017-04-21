@@ -1,0 +1,57 @@
+@import url('https://fonts.googleapis.com/css?family=Josefin+Sans');
+
+body{
+  margin: 0;
+  text-align: center;
+  background-color: #e7e7e7;
+}
+#content{
+  position: relative;
+  margin: 0 auto;
+  text-align: left;
+  width: 250px;
+}
+label{
+  font-family: "Josefin Sans";
+  margin-left: 20px;
+}
+input{
+  margin: 20px;
+  padding: 15px;
+  border: none;
+  display: block;
+}
+.formSubmit{
+  background-color: #d3cab6;
+  color: white;
+  width: 150px;
+}
+.formSubmit:hover{
+  background-color: #beb093;
+}
+nav{
+  position: relative;
+  margin: 0 auto 50px auto;
+  text-align: left;
+  padding: 15px;
+  background-color: black;
+  border-radius: 3px;
+}
+.navlink{
+  font-family: "Josefin Sans";
+  display: inline-block;
+  margin: 10px 0px 10px 0px;
+  padding: 10px 30px 10px 30px;
+  /*  border-right: 1px solid #d3cab6;*/
+  border-left: 1px solid #d3cab6;
+
+}
+.navlink a{
+  font-size: 1.3em;
+  color: white;
+  text-decoration: none;
+}
+.navlink a:hover{
+  transition: all 1s ease-in-out;
+  text-decoration: underline;
+}

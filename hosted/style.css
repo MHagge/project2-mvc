@@ -46,6 +46,9 @@ nav{
   border-left: 1px solid #d3cab6;
 
 }
+.navlink:first-child{
+  border:none;
+}
 .navlink a{
   font-size: 1.3em;
   color: white;

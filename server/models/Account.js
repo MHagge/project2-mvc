@@ -59,29 +59,31 @@ AccountSchema.statics.findByUsername = (name, callback) => {
 AccountSchema.statics.generateHash = (password, callback) => {
   const salt = crypto.randomBytes(saltLength);
 
-  crypto.pbkdf2(password, salt, iterations, keyLength, 'RSA-SHA512', (err, hash) =>
-    callback(salt, hash.toString('hex'))
-  );
+
+  crypto.pbkdf2(password, salt, iterations, keyLength, 'RSA-SHA512', (err, hash) => {
+    callback(salt, hash.toString('hex'));
+  });
 };
 
-AccountSchema.statics.authenticate = (username, password, callback) =>
-AccountModel.findByUsername(username, (err, doc) => {
-  if (err) {
-    return callback(err);
-  }
-
-  if (!doc) {
-    return callback();
-  }
-
-  return validatePassword(doc, password, (result) => {
-    if (result === true) {
-      return callback(null, doc);
+AccountSchema.statics.authenticate = (username, password, callback) => {
+  AccountModel.findByUsername(username, (err, doc) => {
+    if (err) {
+      return callback(err);
     }
 
-    return callback();
+    if (!doc) {
+      return callback();
+    }
+
+    return validatePassword(doc, password, (result) => {
+      if (result === true) {
+        return callback(null, doc);
+      }
+
+      return callback();
+    });
   });
-});
+};
 
 AccountModel = mongoose.model('Account', AccountSchema);
 

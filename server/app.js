@@ -13,7 +13,7 @@ const csrf = require('csurf');
 
 const PORT = process.env.PORT || process.env.NODE_PORT || 3000;
 
-const dbURL = process.env.MONGODB_URI || 'mongodb://localhost/FidgetApp';
+const dbURL = process.env.MONGODB_URI || 'mongodb://localhost/NoteApp';
 
 mongoose.connect(dbURL, (err) => {
   if (err) {

@@ -1,13 +1,14 @@
 const handleLogin = (e) =>{
   e.preventDefault();
-
+  
+  //check fields
   if($("#user").val() == '' || $("#pass").val() == ''){
-    handleError("Username or password is empty.");
+    handleError("Username or password is empty");
     return false;
   }
 
-  console.log($("input[name=_csrf]").val());
-
+  //console.log($("input[name=_csrf]").val());
+  //ajax call
   sendAjax('POST', $("#loginForm").attr("action"), $("#loginForm").serialize(), redirect);
 
   return false;
@@ -15,14 +16,14 @@ const handleLogin = (e) =>{
 
 const handleSignup = (e) =>{
   e.preventDefault();
-
+  //check fields
   if($("#user").val() == "" || $("#pass").val() == '' || $("#pass2").val() == ''){
-    handleError("All fields are required.");
+    handleError("All fields are required");
     return false;
   }
-
+  //check fields
   if($("#pass").val() != $("#pass2").val()){
-    handleError("Passwords do not match.");
+    handleError("Passwords do not match");
     return false;
   }
 
@@ -30,26 +31,9 @@ const handleSignup = (e) =>{
   return false;
 };
 
-const handleChangePW = (e) =>{
-  e.preventDefault();
-
-  if($("#currentPW").val() == "" || $("#newPW").val() == ""){
-    handleError("All fields are required.");
-    return false;
-  }
-
-  if($("#currentPW").val() === $("#newPW").val()){
-    handleError("New password is the same as old password.");
-    return false;
-  }
-
-  console.log("Successful kick off of change password form.. going to ajax next... WIP");
-  
-  sendAjax('POST', $("#changePWForm").attr("action"), $("#changePWForm").serialize(), redirect);
-  return false;
-};
-
 const renderLogin = function(){
+  $("#errorMessage").css("opacity","0");
+  $("#errorMessage").css("height","0px");  
   return(
     <form 
       id="loginForm"
@@ -60,10 +44,10 @@ const renderLogin = function(){
       className="mainForm"
       >
       <label htmlFor="username">USERNAME</label>
-      <input name="username" id="user" type="text" placeholder="username"></input>
+      <input name="username" id="username" type="text" placeholder="username"></input>
 
       <label htmlFor="password">PASSWORD</label>
-      <input name="password" id="pass" type="password" placeholder="password"></input>
+      <input name="password" id="password" type="password" placeholder="password"></input>
 
       <input name="_csrf" type="hidden" value={this.props.csrf}/>
 
@@ -72,6 +56,8 @@ const renderLogin = function(){
   );
 };
 const renderSignup = function(){
+  $("#errorMessage").css("opacity","0");
+  $("#errorMessage").css("height","0px");
   return(
     <form 
       id="signupForm"
@@ -82,7 +68,7 @@ const renderSignup = function(){
       className="mainForm"
       >
       <label htmlFor="username">USERNAME</label>
-      <input id="user" type="text" name="username" placeholder="username"/>
+      <input id="usernames" type="text" name="username" placeholder="username"/>
       
       <label htmlFor="pass">PASSWORD</label>
       <input name="pass" id="pass" type="password" placeholder="password"/>
@@ -92,27 +78,6 @@ const renderSignup = function(){
       
       <input type="hidden" name="_csrf" value={this.props.csrf}/>
       <input className="formSubmit" type="submit" value="SIGN IN" />
-    </form>
-  );
-};
-
-const renderChangePW = function(){
-  return(
-    <form 
-      id="changePWform"
-      name="changePWform"
-      onSubmit={this.handleSubmit}
-      action="/changePW"
-      method="POST"
-      className="mainForm"
-      >
-      <input id="currentPW" type="password" placeholder="CURRENT PASSWORD"/>
-
-      <input id="newPW" type="password" placeholder="NEW PASSWORD"/>
-
-      <label name="_csrf" type="hidden" value={this.props.csrf}/>
-      
-      <input className="formSubmit" type="submit" value="SAVE"/>  
     </form>
   );
 };
@@ -141,21 +106,9 @@ const createSignupWindow = function (csrf){
   );
 };
 
-const createChangePWWindow = function (csrf){
-  const ChangePWWindow = React.createClass({
-    handleSubmit: handleChangePW,
-    render: renderChangePW
-  });
-  ReactDOM.render(
-    <ChangePWWindow csrf={csrf}/>,
-    document.querySelector("#content")
-  );
-};
-
 const setup = function(csrf){
   const loginButton = document.querySelector("#loginButton");
   const signupButton = document.querySelector("#signupButton");
-  const changePWButtom = document.querySelector("#changePWButton")
 
   signupButton.addEventListener('click', (e)=>{
     e.preventDefault();
@@ -165,11 +118,6 @@ const setup = function(csrf){
   loginButton.addEventListener('click', (e)=>{
     e.preventDefault();
     createLoginWindow(csrf);
-    return false;
-  });
-  changePWButtom.addEventListener('click', (e)=>{
-    e.preventDefault();
-    createChangePWWindow(csrf);
     return false;
   });
 

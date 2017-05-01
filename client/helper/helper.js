@@ -1,6 +1,10 @@
 const handleError = (message) => {
+  //grab and set errorMessage in the html
   $("#errorMessage").text(message);
-  console.log("handleError function is WIP");
+  //make error message visable and move to animate
+  $("#errorMessage").css("opacity","1");
+  $("#errorMessage").css("height","50px");
+
   console.log(message);
 };
 
@@ -9,7 +13,8 @@ const redirect = (response) =>{
 };
 
 const sendAjax = (type, action, data, success) =>{
-    
+  //console.dir(data);
+  //console.dir(action);
   $.ajax({
     cache: false,
     type: type,

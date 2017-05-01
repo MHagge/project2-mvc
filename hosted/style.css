@@ -4,8 +4,23 @@ body{
   margin: 0;
   text-align: center;
   background-color: #e7e7e7;
+  font-family: "Josefin Sans";
 }
-#content{
+#errorMessage{
+  position: relative;
+  margin: 0 auto;
+  width: 250px;
+  color: firebrick;
+  font-family: "Josefin Sans";
+  font-size: 1.1em;
+  transition: all .7s ease-in-out;
+  opacity: 0;
+}
+hr{
+  width: 250px;
+  margin: 3% auto;
+}
+form{
   position: relative;
   margin: 0 auto;
   text-align: left;
@@ -21,13 +36,17 @@ input{
   border: none;
   display: block;
 }
+input[type="checkbox"]{
+  display: inline-block;
+  margin-right: 0;
+}
 .formSubmit{
-  background-color: #d3cab6;
+  background-color: #beb093;
   color: white;
   width: 150px;
 }
 .formSubmit:hover{
-  background-color: #beb093;
+  background-color: #b1a07c;
 }
 nav{
   position: relative;
@@ -42,12 +61,16 @@ nav{
   display: inline-block;
   margin: 10px 0px 10px 0px;
   padding: 10px 30px 10px 30px;
-  /*  border-right: 1px solid #d3cab6;*/
   border-left: 1px solid #d3cab6;
-
 }
 .navlink:first-child{
   border:none;
+}
+.navlink:nth-child(3){
+  border:none;
+}
+#logoutNav{
+  float:right;
 }
 .navlink a{
   font-size: 1.3em;
@@ -57,4 +80,36 @@ nav{
 .navlink a:hover{
   transition: all 1s ease-in-out;
   text-decoration: underline;
+}
+.noteList{
+  padding: 0 5%;
+}
+#emptyNote{
+  margin: 10%;
+}
+.note{
+  position: relative;
+  margin: 40px;
+  width: 300px;
+  background-color: #bbccff;
+  text-align: left;
+  padding: 10px 40px;
+  display: inline-block;
+  border-radius: 10px 0 0 0;
+  font-family: "Josefin Sans";
+}
+.note h2{
+  border-bottom: 1px solid #999;
+  padding: 10px;
+}
+.note p{
+  margin: 20px;
+}
+.note input{
+  float: right;
+  color: white;
+  background-color: #beb093;
+}
+.note input:hover{
+  background-color: #b1a07c;
 }
